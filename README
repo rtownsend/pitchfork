@@ -1,0 +1,43 @@
+Hi all! This is the first public version of Pitchfork. 
+Try it out - let me know what you think. Yes, it's a 
+little messy, there are some things I did wrong and 
+it hasn't really been through the formal design process
+but if you find it useful - consider helping extend it.
+
+I can't be bothered with all that licensing stuff, 
+basically whatever you want to do with it, that's fine.
+However I should point out that the Pitchfork logo is
+copywritten to me (so you should not use it to promote
+your own services without my permission) and you should
+distribute the source code with it (which in practical
+terms means posting a link to this repository for your
+user to follow.)
+
+On to installation information - Pitchfork needs
+essentially three things: 1) A place for the PHP 
+scripts to go; 2) A place for the files you're serving
+to go and 3) A "secret" directory of your choosing
+(preferably not accessible to the web) to store things.
+I recommend that if you want to use the "Compressed
+Download" option that you should install the zip command
+line program. Ooh, and don't forget to make your secret
+directory writeable (this has stung me in the tail,
+producing zip files that are filled with errors.) 
+Once you have these things, simply modify the 
+pitchfork-configuration-user.php file in the
+configuration directory, and you'll be good to go.
+Oh yes, and you will probably need to allow PHP to 
+execute shell commands.
+
+Pitchfork does not run on Windows (as the command 
+line is different - you might be able to get it
+running under Cygwin or something) and is quite
+sensitive to the distribution that you're using
+(it has been tested on run on OpenSUSE). If 
+something doesn't work - by all means tell me about
+it and I'll see what I can do. 
+
+Happy serving :)
+---------------------------------------------------------
+Richard Townsend
+acorn.alert@googlemail.com
