@@ -79,7 +79,7 @@ class Listing
 	{
 		$index = Listing::get_dir_contents($dir);
 		
-		$return_str = "<div id=\"browser-div\">";
+		$return_str = "<div id=\"browser-div-sub\">";
 		
 		if(count($index['directories']) > 0)
 		{
@@ -87,11 +87,11 @@ class Listing
 			$return = "";
 			foreach($index['directories'] as $f)
 			{
-				if(!$recurse) $return_str .= Listing::dir_listing($f['file.name'], $f['path.hash']);
-				else 
+				//if(!$recurse) $return_str .= Listing::dir_listing($f['file.name'], $f['path.hash']);
+                                $return_str .= Listing::dir_listing($f['file.name'], $f['path.hash']);
+				if($recurse)
 				{
 					$return_str .= Listing::ls_dir($f['path'], true);
-					$return_str .="</div>";
 				}
 			}
 		}
@@ -105,9 +105,11 @@ class Listing
 			{
 				$return_str.= Listing::file_listing($f['path.hash'], $f['file.name']);
 			}
-			$return_str .= "<div>...</div></div><hr />\n";
+			$return_str .= "<div>...</div><hr />\n";
 		}
-		
+
+                $return_str.="</div>";
+
 		return $return_str;
 	}
 	
@@ -328,7 +330,28 @@ class Listing
 		}
 		return $return;
 	}
-	
+
+
+        public function complete_structure($structure)
+        {
+            if(count($structure)>0)
+            {
+                for($i=0; $i<count($structure); $i++)
+                {
+                    $directories = explode("/",$structure[$i]);
+                    $directory_test = "";
+                    for($j=0; $j<count($directories); $j++)
+                    {
+                        $directory_test.=$directories[$j]."/";
+                        if(!in_array($directory_test, $structure) && $directory_test != "/" && is_dir($directory_test))
+                        {
+                            $structure[] = $directory_test;
+                        }
+                    }
+                }
+            }
+        }
+
 	public function print_structure($structure)
 	{
 		//$return_str = "<div class=\"browser\">";
@@ -390,7 +413,7 @@ class Listing
 	
 	public function dump_contents($path)
 	{
-		set_magic_quotes_runtime(0);
+		//set_magic_quotes_runtime(0);
 		ini_set('session.cache_limiter','none');
 		//$fp = fopen($path, 'rb');
 		//fpassthru($fp);

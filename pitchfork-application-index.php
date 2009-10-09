@@ -30,8 +30,8 @@ if(!$_REQUEST['mask'])
 }
 else 
 {
-	$context = Listing::find_hash($_REQUEST['mask'],$Cfg_FolderLoc); 
-	$mask    = $context['current_dir'];
+	$context  = Listing::find_hash($_REQUEST['mask'],$Cfg_FolderLoc); 
+	$mask     = $context['current_dir'];
 	$index_UI -> zip_hash = $_REQUEST['mask'];
 }
 
@@ -54,7 +54,9 @@ if($list->directory_empty) $index_UI -> load("directory-empty");
 else 
 {
 	$index_UI -> load('index');
+        $index_UI -> append("<div id=\"browser-div\">");
 	$index_UI -> append($dir_result);
+        $index_UI -> append("</div>");
 }
 
 
