@@ -117,7 +117,7 @@ function buffered_read($File, $bytes, $buffer_size = 1024)
 }
 
 # Unset magic quotes (prevents file modification)
-set_magic_quotes_runtime(0);
+//set_magic_quotes_runtime(0);
 
 # Do not send cache limiter header
 ini_set("session.cache_limiter","none");
